@@ -1,14 +1,59 @@
 <!doctype html>
-<title>{{ title }} — Algolymp</title>
-<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<nav>
-	<h1>Algolymp</h1>
-</nav>
-<section class="content">
-	<header>
-		{% block header %}{% endblock %}
-	</header>
-	{% block content %}{% endblock %}
-</section>
+<html lang="en" class="h-100">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<title>{{ title }} — Algolymp</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+	<style>
+		.bd-placeholder-img {
+			font-size: 1.125rem;
+			text-anchor: middle;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+		}
+
+		@media (min-width: 768px) {
+			.bd-placeholder-img-lg {
+				font-size: 3.5rem;
+			}
+		}
+	</style>
+
+
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<link href="{{ url_for('static', filename='css/cover.css') }}" rel="stylesheet">
+</head>
+<body class="d-flex h-100 text-center text-white bg-dark">
+
+	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+		<header class="mb-auto">
+			<div>
+				<h3 class="float-md-start mb-0">Algolymp</h3>
+				<nav class="nav nav-masthead justify-content-center float-md-end">
+					{% for name, href in config %}
+					<a class="nav-link {% if name == title %}active{% endif %}" href="{{ href }}">{{ name }}</a>
+					{% endfor %}
+				</nav>
+			</div>
+		</header>
+
+		<main class="px-3">
+			{% block content %}{% endblock %}
+		</main>
+
+		{% block raw_content %}{% endblock %}
+
+		<footer class="mt-auto text-white-50">
+			<p>Alexander Gornak 2023</p>
+		</footer>
+	</div>
+</body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+{% block script %}{% endblock %}
+</html>
