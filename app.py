@@ -25,5 +25,10 @@ def contact():
 	return redirect('mailto:s-kozelsk@yandex.ru')
 
 
+@app.errorhandler(404)
+def not_found(e):
+	return redirect('https://www.youtube.com/watch?v=__cqdc-dxWg')
+
+
 if __name__ == '__main__':
 	app.run(debug=True)
