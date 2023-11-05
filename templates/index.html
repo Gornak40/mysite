@@ -1,1 +1,85 @@
 {% extends 'base.html' %}
+
+{% block style %}
+<style>
+	.countdown-item {
+		display: inline-block;
+		margin: 0 15px;
+		text-align: center;
+	}
+
+	.countdown-item span {
+		display: block;
+		font-size: 45px;
+		font-weight: bold;
+		font-family: 'my_clock';
+	}
+
+	@font-face {
+		font-family: 'my_clock';
+		src: url('/static/fonts/better-vcr5.1.ttf');
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Region countdown</h1>
+<div id="countdown">
+	<div class="countdown-item">
+		<span id="days"></span>
+		<p>D</p>
+	</div>
+	<div class="countdown-item">
+		<span id="hours"></span>
+		<p>H</p>
+	</div>
+	<div class="countdown-item">
+		<span id="minutes"></span>
+		<p>M</p>
+	</div>
+	<div class="countdown-item">
+		<span id="seconds"></span>
+		<p>S</p>
+	</div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+	$(document).ready(function () {
+		var final_date = '2024/01/20';
+
+		function countdown_update() {
+			var now = new Date();
+			var event_date = new Date(final_date);
+
+			var current_time = now.getTime();
+			var event_time = event_date.getTime();
+
+			var rem_time = event_time - current_time;
+
+			var s = Math.floor(rem_time / 1000);
+			var m = Math.floor(s / 60);
+			var h = Math.floor(m / 60);
+			var d = Math.floor(h / 24);
+
+			h %= 24;
+			m %= 60;
+			s %= 60;
+
+			h = (h < 10) ? "0" + h : h;
+			m = (m < 10) ? "0" + m : m;
+			s = (s < 10) ? "0" + s : s;
+
+			$('#days').text(d);
+			$('#hours').text(h);
+			$('#minutes').text(m);
+			$('#seconds').text(s);
+
+			setTimeout(countdown_update, 1000);
+		}
+
+		countdown_update();
+	})
+</script>
+{% endblock %}
