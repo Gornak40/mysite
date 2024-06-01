@@ -7,12 +7,17 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return render_template('index.html', title='Home', config=config)
+	return redirect('/cli-tools')
 
 
 @app.route('/cli-tools')
 def cli_tool():
 	return render_template('cli_tools.html', title='CLI Tools', config=config)
+
+
+@app.route('/crosspawn')
+def crosspawn():
+	return render_template('crosspawn.html', title='CrossPawn', config=config)
 
 
 @app.route('/tinkoff')
