@@ -1,6 +1,6 @@
 config = [
 	('CLI Tools', '/cli-tools'),
 	('CrossPawn', '/crosspawn'),
-	('T-Bank', 'https://algocourses.ru'),
-	('Contact', '/contact'),
+	('AVX Contest', 'https://algocourses.ru/avx2024'),
+	('T-Gen', 'https://algocourses.ru'),
 ]
